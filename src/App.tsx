@@ -1,10 +1,24 @@
 import "./App.css";
 
+//component imports
+import Login from "./Pages/login/Login";
+import Signup from "./Pages/SignUp/Signup";
+import Home from "./Pages/Home/Home";
+
+//react router import
+import { Route, Routes } from "react-router-dom";
+import NavBar from "./Component/NavBar/NavBar";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Home</h1>
-    </div>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </>
   );
 }
 

@@ -18,6 +18,8 @@
   padding-top: 0rem !important;
   margin-right: 2rem !important;
   color: #5cb85c !important;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .navBar ul {
@@ -32,4 +34,10 @@
   color: black;
   background-color: transparent;
   font-size: medium;
+  padding-top: 0.425rem;
+  padding-bottom: 0.425rem;
+}
+a:hover {
+  color: grey;
+  transition: 0.5 s all;
 }

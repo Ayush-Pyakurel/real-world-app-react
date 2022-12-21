@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 
+import { FC, ReactElement } from "react";
+
 import NavStyles from "./NavBar.module.css";
 
-const NavBar = () => {
+const NavBar: FC = (): ReactElement => {
   return (
     <nav className={NavStyles.navBar}>
-      <div className={NavStyles.title}>
-        <h3>Conduit</h3>
+      <div>
+        <Link to="/" className={NavStyles.title}>
+          Conduit
+        </Link>
       </div>
       <div className={NavStyles.listContainer}>
         <ul className={NavStyles.navList}>
@@ -14,10 +18,10 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="login">Login</Link>
+            <Link to="login">Sign in</Link>
           </li>
           <li>
-            <Link to="/signup">Signup</Link>
+            <Link to="/signup">Sign up</Link>
           </li>
         </ul>
       </div>

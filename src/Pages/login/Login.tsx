@@ -30,7 +30,12 @@ interface loginResponse {
   };
 }
 
-const Login: FC = (): ReactElement => {
+interface funcProps {
+  toggles(): void;
+  username(username: string): void;
+}
+
+const Login: React.FC<funcProps> = (prop): ReactElement => {
   const loginSubmit = async (inputValue: any) => {
     await axios
       .post<loginResponse>(
@@ -50,6 +55,8 @@ const Login: FC = (): ReactElement => {
       .then((res) => {
         toast.success("Loggedin Successfully");
         localStorage.setItem("Token", res.data.user.token);
+        prop.username(res.data.user.username);
+        prop.toggles();
       })
       .catch((err) => {
         toast.error(

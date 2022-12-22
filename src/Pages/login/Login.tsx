@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 
 //router elememts import
 import { Link } from "react-router-dom";
@@ -11,21 +11,56 @@ import { useFormik } from "formik";
 
 //yup imports
 import * as YUP from "yup";
+// import { useQuery } from "react-query";
+
+//react-toastify import
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import axios from "axios";
+
+//interface for axios response
+interface loginResponse {
+  user: {
+    email: string;
+    token: string;
+    username: string;
+    bio: string;
+    image: string;
+  };
+}
 
 const Login: FC = (): ReactElement => {
-  const initialValues = {
-    email: "",
-    password: "",
+  const loginSubmit = async (inputValue: any) => {
+    await axios
+      .post<loginResponse>(
+        "https://api.realworld.io/api/users/login",
+        {
+          user: {
+            email: inputValue.email,
+            password: inputValue.password,
+          },
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Loggedin Successfully");
+        localStorage.setItem("Token", res.data.user.token);
+      })
+      .catch((err) => {
+        toast.error(
+          err.message === "Request failed with status code 403"
+            ? "Invalid Credential"
+            : "Unable to Login"
+        );
+      });
   };
 
-  const onSubmit = (value: any) => {
-    console.log("onSubmit", value);
-  };
-
-  const validationSchema = YUP.object({
-    email: YUP.string().required("Email is required").email("Invalid email!"),
-    password: YUP.string().required("Password is required"),
-  });
+  //const query = useQuery("login", (inputValue) => {});
 
   const formik: any = useFormik({
     initialValues: {
@@ -33,7 +68,7 @@ const Login: FC = (): ReactElement => {
       password: "",
     },
     onSubmit: (value) => {
-      console.log("onSubmit", value);
+      loginSubmit(value);
     },
     validationSchema: YUP.object({
       email: YUP.string().required("Email is required").email("Invalid email!"),
@@ -43,55 +78,56 @@ const Login: FC = (): ReactElement => {
 
   return (
     <>
-      <>
-        <div className={loginStyles["login-container"]}>
-          <>
-            <div className={loginStyles["form-title"]}>
-              <h1>Sign in</h1>
-              <Link to={"/signup"}>
-                {" "}
-                <span>Need an account?</span>
-              </Link>
+      <ToastContainer position="top-center" autoClose={2000} />
+      <div className={loginStyles["login-container"]}>
+        <>
+          <div className={loginStyles["form-title"]}>
+            <h1>Sign in</h1>
+            <Link to={"/signup"}>
+              {" "}
+              <span>Need an account?</span>
+            </Link>
+          </div>
+          <form
+            className={loginStyles["login-form"]}
+            onSubmit={formik.handleSubmit}
+          >
+            <label></label>
+            <input
+              type="email"
+              placeholder="Email"
+              id="email"
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
+            <div className={loginStyles.error}>
+              {formik.errors.email &&
+                formik.touched.email &&
+                formik.errors.email}
             </div>
-            <form
-              className={loginStyles["login-form"]}
-              onSubmit={formik.handleSubmit}
-            >
-              <label></label>
-              <input
-                type="email"
-                placeholder="Email"
-                id="email"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <div className={loginStyles.error}>
-                {formik.errors.email &&
-                  formik.touched.email &&
-                  formik.errors.email}
-              </div>
-              <label htmlFor="password"></label>
-              <input
-                type="password"
-                placeholder="password"
-                id="password"
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <div className={loginStyles.error}>
-                {formik.errors.password &&
-                  formik.touched.password &&
-                  formik.errors.password}
-              </div>
-              <button className={loginStyles["login-btn"]}>Sign in</button>
-            </form>
-          </>
-        </div>
-      </>
+            <label htmlFor="password"></label>
+            <input
+              type="password"
+              placeholder="password"
+              id="password"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <div className={loginStyles.error}>
+              {formik.errors.password &&
+                formik.touched.password &&
+                formik.errors.password}
+            </div>
+            <button className={loginStyles["login-btn"]} type="submit">
+              Sign in
+            </button>
+          </form>
+        </>
+      </div>
     </>
   );
 };

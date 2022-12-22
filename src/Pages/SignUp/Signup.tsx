@@ -10,7 +10,65 @@ import { useFormik } from "formik";
 //yup import
 import * as YUP from "yup";
 
+//axios import
+import axios from "axios";
+
+//react-toastify imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//router import
+import { useNavigate } from "react-router-dom";
+
+//axios response type
+interface signupResponse {
+  user: {
+    email: "string";
+    token: "string";
+    username: "string";
+    bio: "string";
+    image: "string";
+  };
+}
+
 const Signup = () => {
+  const navigate = useNavigate();
+
+  const signUpSubmit = async (inputValue: any) => {
+    await axios
+      .post<signupResponse>(
+        "https://api.realworld.io/api/users",
+        {
+          user: {
+            username: inputValue.username,
+            email: inputValue.email,
+            password: inputValue.password,
+          },
+        },
+        {
+          headers: {
+            "context-type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("User created successfully", { position: "top-center" });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      })
+      .catch((err) => {
+        // console.log(err.status);
+        // console.log(err.message);
+        toast.error(
+          err.message === "Request failed with status code 422"
+            ? "This user is already created"
+            : "Could not register new user"
+        );
+      });
+  };
+
+  //formik hook for form validation
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -18,7 +76,7 @@ const Signup = () => {
       password: "",
     },
     onSubmit: (value) => {
-      console.log("signup", value);
+      signUpSubmit(value);
     },
     validationSchema: YUP.object({
       email: YUP.string()
@@ -30,6 +88,7 @@ const Signup = () => {
   });
   return (
     <>
+      <ToastContainer position="top-center" autoClose={2000} />
       <div className={signupStyles["signup-container"]}>
         <div className={signupStyles["form-title"]}>
           <h1>Sign up</h1>

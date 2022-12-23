@@ -19,6 +19,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 //interface for axios response
 interface loginResponse {
   user: {
@@ -36,6 +38,8 @@ interface funcProps {
 }
 
 const Login: React.FC<funcProps> = (prop): ReactElement => {
+  const navigate = useNavigate();
+
   const loginSubmit = async (inputValue: any) => {
     await axios
       .post<loginResponse>(
@@ -49,6 +53,7 @@ const Login: React.FC<funcProps> = (prop): ReactElement => {
         {
           headers: {
             "content-type": "application/json",
+            Authorization: `Token ${localStorage.getItem("Token")}`,
           },
         }
       )
@@ -57,6 +62,9 @@ const Login: React.FC<funcProps> = (prop): ReactElement => {
         localStorage.setItem("Token", res.data.user.token);
         prop.username(res.data.user.username);
         prop.toggles();
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((err) => {
         toast.error(
@@ -85,7 +93,7 @@ const Login: React.FC<funcProps> = (prop): ReactElement => {
 
   return (
     <>
-      <ToastContainer position="top-center" autoClose={2000} />
+      <ToastContainer position="top-center" autoClose={1000} />
       <div className={loginStyles["login-container"]}>
         <>
           <div className={loginStyles["form-title"]}>

@@ -1,12 +1,53 @@
+.container {
+  /* border: 2px solid grey; */
+  position: relative;
+  box-sizing: border-box;
+  margin: 1rem 3.5rem 0rem 3.5rem;
+  height: 90vh;
+}
+
+.articles {
+  position: absolute;
+  top: 13%;
+  left: 15%;
+}
+
+.line {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  width: 67rem;
+  position: absolute;
+  top: 8%;
+  left: 15%;
+}
+
+.line .sub-menu {
+  display: flex;
+}
+
+.sub-menu a {
+  text-decoration: none;
+  margin-right: 1.5rem;
+  padding-bottom: 7px;
+  cursor: pointer;
+  color: black;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* .active {
+  color: #5cb85c;
+} */
+
+/* .sub-menu p:active {
+} */
+
 .tags {
   width: 250px;
   position: absolute;
-  top: 50%;
+  top: 2%;
   right: 10%;
   background-color: #f3f3f3;
   padding: 4px;
   border-radius: 8px;
-  box-sizing: border-box;
 }
 
 .tags div {

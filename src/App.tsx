@@ -4,7 +4,7 @@ import "./App.css";
 import Login from "./Pages/login/Login";
 import Signup from "./Pages/SignUp/Signup";
 import Home from "./Pages/Home/Home";
-
+import NewArticle from "./Pages/New-Article/newArticle";
 //react router import
 import { Route, Routes } from "react-router-dom";
 
@@ -24,12 +24,13 @@ function App() {
     <>
       <NavBar logStatus={loggedin} username={username} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home loggedin={loggedin} />} />
         <Route
           path="/login"
           element={<Login toggles={toggle} username={setUsername} />}
         />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/create-article" element={<NewArticle />} />
       </Routes>
     </>
   );

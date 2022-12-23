@@ -38,7 +38,7 @@ const NavBar: React.FC<booleanProp> = (prop): ReactElement => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/article">New Article</Link>
+              <Link to="/create-article">New Article</Link>
             </li>
             <li>
               <Link to="/setting">Settings</Link>

@@ -1,15 +1,15 @@
 //react import
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from 'react';
 
 //component imports
-import Banner from "../../Component/Banner/Banner";
-import homeStyles from "./Home.module.css";
+import Banner from '../../Component/Banner/Banner';
+import homeStyles from './Home.module.css';
 
 //axios imports
-import axios from "axios";
+import axios from 'axios';
 
 //react router import
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 interface booleanProps {
   loggedin: boolean;
@@ -25,7 +25,7 @@ const Home: React.FC<booleanProps> = ({ loggedin }): ReactElement => {
 
   useEffect(() => {
     axios
-      .get("https://api.realworld.io/api/tags")
+      .get('https://api.realworld.io/api/tags')
       .then((response) => {
         setLoading(true);
         setTags(response.data.tags);
@@ -41,19 +41,19 @@ const Home: React.FC<booleanProps> = ({ loggedin }): ReactElement => {
       ) : (
         <div className={homeStyles.container}>
           <div className={homeStyles.line}>
-            <div className={homeStyles["sub-menu"]}>
+            <div className={homeStyles['sub-menu']}>
               <NavLink
-                to="#"
+                to='#'
                 style={({ isActive }) => {
-                  return isActive ? { color: "#5cb85c" } : {};
+                  return isActive ? { color: '#5cb85c' } : {};
                 }}
               >
                 Your Feed
               </NavLink>
               <NavLink
-                to="#"
+                to='/article'
                 style={({ isActive }) => ({
-                  color: isActive ? "#5cb85c" : "black",
+                  color: isActive ? '#5cb85c' : 'black',
                 })}
               >
                 Global Feed

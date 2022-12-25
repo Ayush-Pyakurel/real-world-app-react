@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 //component import
 import NavBar from "./Component/NavBar/NavBar";
 import { useState } from "react";
+import Article from "./Pages/Article/Article";
 
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
@@ -31,6 +32,7 @@ function App() {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/create-article" element={<NewArticle />} />
+        <Route path="/article/feed" element={<Article />} />
       </Routes>
     </>
   );

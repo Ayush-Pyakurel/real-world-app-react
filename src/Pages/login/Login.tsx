@@ -19,13 +19,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 
+import { useAuthContext } from "../../Hooks/useAuthContext";
+
 import { useNavigate } from "react-router-dom";
 
 //interface for axios response
 interface loginResponse {
   user: {
     email: string;
-    token: string;
+    token: any;
     username: string;
     bio: string;
     image: string;
@@ -40,39 +42,44 @@ interface funcProps {
 const Login: React.FC<funcProps> = (prop): ReactElement => {
   const navigate = useNavigate();
 
+  //@ts-ignore
+  const { dispatch } = useAuthContext();
+
   const loginSubmit = async (inputValue: any) => {
-    await axios
-      .post<loginResponse>(
-        "https://api.realworld.io/api/users/login",
-        {
-          user: {
-            email: inputValue.email,
-            password: inputValue.password,
+    try {
+      await axios
+        .post<loginResponse>(
+          "https://api.realworld.io/api/users/login",
+          {
+            user: {
+              email: inputValue.email,
+              password: inputValue.password,
+            },
           },
-        },
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Token ${localStorage.getItem("Token")}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Loggedin Successfully");
-        localStorage.setItem("Token", res.data.user.token);
-        prop.username(res.data.user.username);
-        prop.toggles();
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      })
-      .catch((err) => {
-        toast.error(
-          err.message === "Request failed with status code 403"
-            ? "Invalid Credential"
-            : "Unable to Login"
-        );
-      });
+          {
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Token ${localStorage.getItem("Token")}`,
+            },
+          }
+        )
+        .then((res) => {
+          toast.success("Loggedin Successfully");
+          //localStorage.setItem("Token", res.data.user.token);
+          prop.username(res.data.user.username);
+          prop.toggles();
+          dispatch({ type: "LOGIN", payload: res.data.user });
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        });
+    } catch (err: any) {
+      toast.error(
+        err.message === "Request failed with status code 403"
+          ? "Invalid Credential"
+          : "Unable to Login"
+      );
+    }
   };
 
   //const query = useQuery("login", (inputValue) => {});

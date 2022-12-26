@@ -1,58 +1,38 @@
-import axios from 'axios';
-import { ReactElement, useEffect, useState } from 'react';
+import axios from "axios";
+import { ReactElement, useEffect, useState } from "react";
 
-interface responseData {
-  articles: [];
-  slug: string;
-  title: string;
-  description: string;
-  body: string;
-  tagList: [];
-  createdAt: string;
-  updatedAt: string;
-  favorited: string;
-  favoriteCount: number;
-  author: {
-    username: string;
-    bio: string;
-    image: string;
-    following: boolean;
-  };
-}
+import stylesArticle from "./Article.module.css";
+import YourArticle from "../../Component/Your Article/YourArticle";
+import GlobalArticle from "../../Component/Global Article/GlobalArticle";
+import { NavLink, Outlet } from "react-router-dom";
+import Tags from "../../Component/Tags/Tags";
 
 const Article: React.FC = (): ReactElement => {
-  // let responseData: any = [];
-  // console.log(responseData, 'baira');
-  const [articles, setArticles] = useState<any>([]);
-
-  console.log(articles, 'baira');
-
-  useEffect(() => {
-    const handleFetchArticle = async () => {
-      await axios
-        .get<any>('https://api.realworld.io/api/articles')
-        .then((response: any) => {
-          setArticles(response.data.articles);
-          console.log(typeof response.data.articles);
-          console.log(typeof articles);
-        });
-    };
-    handleFetchArticle();
-  }, []);
-
-  console.log(articles, 'vitra-baira');
-
   return (
-    <div>
-      <>
-        <h1>article</h1>
-        {console.log(articles, 'jsx')}
-        <article>
-          {articles.map((item: any) => {
-            return <p>{item}</p>;
-          })}
-        </article>
-      </>
+    <div className={stylesArticle.container}>
+      <div className={stylesArticle.line}>
+        <div className={stylesArticle["sub-menu"]}>
+          <NavLink
+            to="article/your-feed"
+            style={({ isActive }) => {
+              return isActive ? { color: "#5cb85c" } : {};
+            }}
+          >
+            Your Feed
+          </NavLink>
+          <NavLink
+            to="article/global-feed"
+            style={({ isActive }) => ({
+              color: isActive ? "#5cb85c" : "black",
+            })}
+          >
+            Global Feed
+          </NavLink>
+        </div>
+      </div>
+      <div className={stylesArticle.articles}>
+        <span>No article are here... yet</span>
+      </div>
     </div>
   );
 };

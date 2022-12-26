@@ -1,0 +1,40 @@
+.container {
+  /* border: 2px solid grey; */
+  position: relative;
+  box-sizing: border-box;
+  margin: 1rem 3.5rem 0rem 3.5rem;
+  height: 90vh;
+}
+
+.articles {
+  position: absolute;
+  top: 5rem;
+  left: 10rem;
+}
+
+.line {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  width: 55rem;
+  position: absolute;
+  top: 1.5rem;
+  left: 10rem;
+}
+
+.line .sub-menu {
+  display: flex;
+}
+
+.sub-menu a {
+  text-decoration: none;
+  margin-right: 1.5rem;
+  padding-bottom: 7px;
+  cursor: pointer;
+  color: black;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* .tags-container {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+} */

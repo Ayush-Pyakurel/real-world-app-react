@@ -10,36 +10,30 @@ import { Route, Routes } from "react-router-dom";
 
 //component import
 import NavBar from "./Component/NavBar/NavBar";
-import { useState } from "react";
 import Article from "./Pages/Article/Article";
 import YourArticle from "./Component/Your Article/YourArticle";
 import GlobalArticle from "./Component/Global Article/GlobalArticle";
 
-function App() {
-  const [loggedin, setLoggedin] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
+import { useAuthContext } from "./Hooks/useAuthContext";
 
-  const toggle = () => {
-    setLoggedin(true);
-  };
+function App() {
+  //@ts-ignore
+  const { isLoggedIn } = useAuthContext();
 
   return (
     <>
-      <NavBar logStatus={loggedin} username={username} />
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Home loggedin={loggedin} />} />
-
-        <Route
-          path="/login"
-          element={<Login toggles={toggle} username={setUsername} />}
-        />
+        <Route path="/" element={<Home />} />
+        {isLoggedIn && <Route path="/" element={<GlobalArticle />} />}
+        {isLoggedIn && <Route path="/" element={<YourArticle />} />}
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/create-article" element={<NewArticle />} />
-        <Route path="/article">
-          <Route index element={<Article />} />
-          <Route path="global-feed" element={<GlobalArticle />} />
-          <Route path="your-feed" element={<YourArticle />} />
-        </Route>
+        <Route path="/article" element={<Article />} />
+
+        {/* <Route path="global-feed" element={<GlobalArticle />} />
+          <Route path="your-feed" element={<YourArticle />} /> */}
       </Routes>
     </>
   );

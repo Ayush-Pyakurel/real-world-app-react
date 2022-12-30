@@ -34,12 +34,7 @@ interface loginResponse {
   };
 }
 
-interface funcProps {
-  toggles(): void;
-  username(username: string): void;
-}
-
-const Login: React.FC<funcProps> = (prop): ReactElement => {
+const Login: React.FC = (): ReactElement => {
   const navigate = useNavigate();
 
   //@ts-ignore
@@ -66,9 +61,9 @@ const Login: React.FC<funcProps> = (prop): ReactElement => {
         .then((res) => {
           toast.success("Loggedin Successfully");
           //localStorage.setItem("Token", res.data.user.token);
-          prop.username(res.data.user.username);
-          prop.toggles();
+          console.log("object");
           dispatch({ type: "LOGIN", payload: res.data.user });
+          // dispatch({ type: "STORED_STATE" });
           setTimeout(() => {
             navigate("/");
           }, 2000);

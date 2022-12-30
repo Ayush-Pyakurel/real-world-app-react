@@ -4,12 +4,12 @@ import { FC, ReactElement } from "react";
 
 import NavStyles from "./NavBar.module.css";
 
-interface booleanProp {
-  logStatus: boolean;
-  username: string;
-}
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
-const NavBar: React.FC<booleanProp> = (prop): ReactElement => {
+const NavBar: React.FC = (): ReactElement => {
+  //@ts-ignore
+  const { isLoggedIn, user } = useAuthContext();
+
   return (
     <nav className={NavStyles.navBar}>
       <div>
@@ -17,7 +17,7 @@ const NavBar: React.FC<booleanProp> = (prop): ReactElement => {
           Conduit
         </Link>
       </div>
-      {!prop.logStatus ? (
+      {!isLoggedIn ? (
         <div className={NavStyles.listContainer}>
           <ul className={NavStyles.navList}>
             <li>
@@ -44,7 +44,8 @@ const NavBar: React.FC<booleanProp> = (prop): ReactElement => {
               <Link to="/setting">Settings</Link>
             </li>
             <li>
-              <Link to="/setting">{prop.username}</Link>
+              <img src={user.image} alt="user" />{" "}
+              <Link to="/setting">{user.username}</Link>
             </li>
           </ul>
         </div>

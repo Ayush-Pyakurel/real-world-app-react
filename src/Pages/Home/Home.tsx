@@ -1,32 +1,32 @@
 //react import
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 
 //component imports
 import Banner from "../../Component/Banner/Banner";
 import Tags from "../../Component/Tags/Tags";
 import Article from "../Article/Article";
-//axios imports
-import axios from "axios";
+
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 //react router import
 // import { NavLink, Outlet } from "react-router-dom";
-
-interface booleanProps {
-  loggedin: boolean;
-}
 
 interface navLinks {
   activeClassName: string;
 }
 
-const Home: React.FC<booleanProps> = ({ loggedin }): ReactElement => {
+const Home: React.FC = (): ReactElement => {
+  //@ts-ignore
+
+  const { isLoggedIn, user } = useAuthContext();
+  console.log(user, isLoggedIn, "state");
   // const onGlobalFeedClick = () => {
   //   return <Article />;
   // };
 
   return (
     <>
-      {!loggedin ? (
+      {!isLoggedIn ? (
         <>
           <Banner />
         </>

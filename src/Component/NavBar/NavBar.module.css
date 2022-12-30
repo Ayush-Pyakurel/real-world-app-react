@@ -41,3 +41,10 @@ a:hover {
   color: grey;
   transition: 0.5 s all;
 }
+
+img {
+  height: 26px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 5px;
+}

@@ -29,10 +29,12 @@ const Home: React.FC = (): ReactElement => {
       {!isLoggedIn ? (
         <>
           <Banner />
+          <Tags />
         </>
       ) : (
         <>
           <Article />
+          <Tags />
         </>
       )}
     </>

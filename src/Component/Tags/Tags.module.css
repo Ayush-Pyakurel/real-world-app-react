@@ -1,7 +1,16 @@
 .tags {
   width: 250px;
   position: absolute;
-  top: 1rem;
+  top: 16rem;
+  right: 9rem;
+  background-color: #f3f3f3;
+  padding: 4px;
+  border-radius: 8px;
+}
+.logged-tags {
+  width: 250px;
+  position: absolute;
+  top: 10rem;
   right: 9rem;
   background-color: #f3f3f3;
   padding: 4px;
@@ -14,8 +23,20 @@
   /* justify-content: space-around; */
   flex-wrap: wrap;
 }
+.logged-tags div {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+}
 
 .tags ul {
+  display: inline-block;
+  flex-direction: row;
+  list-style: none;
+  margin: 3px 0 3px 3px;
+}
+.logged-tags ul {
   display: inline-block;
   flex-direction: row;
   list-style: none;
@@ -30,12 +51,31 @@
   padding: 3px;
   margin: 1px;
 }
+.logged-tags ul li {
+  border: 0.5px solid grey;
+  border-radius: 10rem;
+  background-color: #818a91;
+  color: white;
+  padding: 3px;
+  margin: 1px;
+}
 
 .tags ul li:hover {
   background-color: #687077;
 }
+.logged-tags ul li:hover {
+  background-color: #687077;
+}
 
 .tags p {
+  align-self: flex-start;
+  margin: 4px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #373a3c;
+}
+.logged-tags p {
   align-self: flex-start;
   margin: 4px;
   font-family: "Source Sans Pro", sans-serif;

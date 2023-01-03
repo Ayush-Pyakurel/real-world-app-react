@@ -36,7 +36,7 @@ function App() {
         <Route path="settings" element={<Settings />} />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/create-article" element={<NewArticle />} />
-        <Route path="/article" element={<Article />} />
+        <Route path="/article" />
 
         {/* <Route path="global-feed" element={<GlobalArticle />} />
           <Route path="your-feed" element={<YourArticle />} /> */}

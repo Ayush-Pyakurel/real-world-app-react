@@ -13,7 +13,7 @@ const Article: React.FC = (): ReactElement => {
       <div className={stylesArticle.line}>
         <div className={stylesArticle["sub-menu"]}>
           <NavLink
-            to="/"
+            to="#"
             style={({ isActive }) => {
               return isActive ? { color: "#5cb85c" } : {};
             }}
@@ -21,7 +21,7 @@ const Article: React.FC = (): ReactElement => {
             Your Feed
           </NavLink>
           <NavLink
-            to="/"
+            to="#"
             style={({ isActive }) => ({
               color: isActive ? "#5cb85c" : "black",
             })}

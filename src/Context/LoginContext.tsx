@@ -27,6 +27,16 @@ export const loginReducer = (state: any, action: any) => {
         user: stored.user,
         isLoggedIn: localStorage.getItem("user") ? true : false,
       };
+    case "UPDATE":
+      return localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...state,
+          user: action.payload,
+          isLoggedIn: action.payload ? true : false,
+        })
+      );
+
     default:
       return state;
   }
@@ -41,6 +51,7 @@ export const LoginContexProvider = ({ children }: any) => {
   //on every render STORED action is dispatched
   useEffect(() => {
     dispatch({ type: "STORED" });
+    // dispatch({ type: "UPDATE" });
   }, []);
 
   return (

@@ -1,9 +1,9 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 
 //styles import
 import newArticleStyles from "./newArticle.module.css";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //formik import
 import { useFormik } from "formik";
@@ -18,7 +18,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const NewArticle: React.FC = (): ReactElement => {
   const navigate = useNavigate();
-  const [article, setArticle] = useState({});
 
   //function to handle article submission
   const createArticelSubmit = (inputValue: any) => {

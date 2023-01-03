@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const NavBar: React.FC = (): ReactElement => {
   //@ts-ignore
   const { isLoggedIn, user } = useAuthContext();
+  console.log(user);
 
   return (
     <nav className={NavStyles.navBar}>
@@ -44,7 +45,8 @@ const NavBar: React.FC = (): ReactElement => {
               <Link to="/create-article">New Article</Link>
             </li>
             <li>
-            <FontAwesomeIcon icon={faGear}/> <Link to="/settings">Settings</Link>
+              <FontAwesomeIcon icon={faGear} />{" "}
+              <Link to="/settings">Settings</Link>
             </li>
             <li>
               <img src={user.image} alt="user" />{" "}

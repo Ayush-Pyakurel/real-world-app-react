@@ -60,10 +60,8 @@ const Login: React.FC = (): ReactElement => {
         )
         .then((res) => {
           toast.success("Loggedin Successfully");
-          //localStorage.setItem("Token", res.data.user.token);
-          console.log("object");
+          localStorage.setItem("Token", res.data.user.token);
           dispatch({ type: "LOGIN", payload: res.data.user });
-          // dispatch({ type: "STORED_STATE" });
           setTimeout(() => {
             navigate("/");
           }, 2000);

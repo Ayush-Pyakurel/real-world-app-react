@@ -3,42 +3,73 @@ import styleSettings from "./Settings.module.css";
 
 import { useFormik } from "formik";
 import * as YUP from "yup";
-import { useEffect, useState } from "react";
 
-const Settings = () => {
-  //   const [values, setValues] = useState();
+//react-toastify imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FC, ReactElement } from "react";
 
-  //   useEffect(() => {
-  //     updateCurrentUser(values);
-  //   }, [values]);
+import { useAuthContext } from "../../Hooks/useAuthContext";
+
+import { useNavigate } from "react-router-dom";
+
+export interface User {
+  email: string;
+  password: string;
+  username: string;
+  bio: string;
+  image: string;
+}
+
+export interface RootObject {
+  user: User;
+}
+
+const Settings: FC = (): ReactElement => {
+  //@ts-ignore
+  const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const updateCurrentUser = async (values: any) => {
-    await axios.put(
-      "https://api.realworld.io/api/user",
-      {
-        user: {
-          email: values.email,
-          password: values.password,
-          username: values.username,
-          bio: values.bio,
-          image: values.image,
+    console.log("first");
+    await axios
+      .put(
+        "https://api.realworld.io/api/user",
+        {
+          user: {
+            email: values.email,
+            password: values.password,
+            username: values.username,
+            bio: values.bio,
+            image: values.image,
+          },
         },
-      },
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Token ${localStorage.getItem("Token")}`,
-        },
-      }
-    );
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Token ${localStorage.getItem("Token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        localStorage.removeItem("user");
+        dispatch({ type: "UPDATE", payload: response.data.user });
+        toast.success("Your Settings are Updated!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const formValidate: any = YUP.object({
     image: YUP.string(),
     username: YUP.string().required("Enter the username"),
     bio: YUP.string().optional(),
-    email: YUP.string().required(),
-    password: YUP.string().required(),
+    email: YUP.string().required().email("Invalid email"),
+    password: YUP.string().required("Enter the password"),
   });
 
   const formik = useFormik({
@@ -59,6 +90,7 @@ const Settings = () => {
 
   return (
     <main className={styleSettings.container}>
+      <ToastContainer position="top-center" autoClose={2000} />
       <h1>Your Settings</h1>
       <form
         onSubmit={formik.handleSubmit}
@@ -71,33 +103,57 @@ const Settings = () => {
           value={formik.values.image}
           placeholder="URL of profile picture"
         />
+        <div className={styleSettings.errors}>
+          {formik.errors.image && formik.touched.image && formik.errors.image}
+        </div>
+
         <input
           name="username"
           type="text"
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.username}
           placeholder="Username"
         />
+        <div className={styleSettings.errors}>
+          {formik.errors.username &&
+            formik.touched.username &&
+            formik.errors.username}
+        </div>
         <textarea
           name="bio"
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.bio}
           placeholder="Short bio about you"
         />
+        <div className={styleSettings.errors}>
+          {formik.errors.bio && formik.touched.bio && formik.errors.bio}
+        </div>
         <input
           type="text"
           name="email"
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.email}
           placeholder="Email"
         />
+        <div className={styleSettings.errors}>
+          {formik.errors.email && formik.touched.email && formik.errors.email}
+        </div>
         <input
           type="password"
           name="password"
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.password}
           placeholder="Password"
         />
+        <div className={styleSettings.errors}>
+          {formik.errors.password &&
+            formik.touched.password &&
+            formik.errors.password}
+        </div>
         <button>Update Settings</button>
       </form>
       <div className={styleSettings["logout-container"]}>

@@ -6,13 +6,12 @@ import NavStyles from "./NavBar.module.css";
 
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faGear, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavBar: React.FC = (): ReactElement => {
   //@ts-ignore
   const { isLoggedIn, user } = useAuthContext();
-  console.log(user);
 
   return (
     <nav className={NavStyles.navBar}>
@@ -42,7 +41,13 @@ const NavBar: React.FC = (): ReactElement => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/create-article">New Article</Link>
+              <FontAwesomeIcon icon={faFileCirclePlus} />
+              <Link
+                to="/create-article"
+                className={NavStyles["new-article-icon"]}
+              >
+                New Article
+              </Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faGear} />{" "}

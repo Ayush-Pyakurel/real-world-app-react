@@ -1,18 +1,23 @@
+//axios import
 import axios from "axios";
+//style module import
 import styleSettings from "./Settings.module.css";
 
+//formik import
 import { useFormik } from "formik";
 import * as YUP from "yup";
 
 //react-toastify imports
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+//react imports
 import { FC, ReactElement } from "react";
-
-import { useAuthContext } from "../../Hooks/useAuthContext";
-
 import { useNavigate } from "react-router-dom";
 
+//context import
+import { useAuthContext } from "../../Hooks/useAuthContext";
+
+//interface for user
 export interface User {
   email: string;
   password: string;
@@ -30,6 +35,7 @@ const Settings: FC = (): ReactElement => {
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
+  //function to handle the update of the setting
   const updateCurrentUser = async (values: any) => {
     console.log("first");
     await axios
@@ -64,6 +70,18 @@ const Settings: FC = (): ReactElement => {
       });
   };
 
+  //function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("Token");
+    toast.success("Logged Out!");
+    setTimeout(() => {
+      navigate("/login");
+      window.location.reload();
+    }, 2000);
+  };
+
+  //validation schema for form
   const formValidate: any = YUP.object({
     image: YUP.string(),
     username: YUP.string().required("Enter the username"),
@@ -72,6 +90,7 @@ const Settings: FC = (): ReactElement => {
     password: YUP.string().required("Enter the password"),
   });
 
+  //hook to handle formik
   const formik = useFormik({
     initialValues: {
       image: "",
@@ -81,8 +100,6 @@ const Settings: FC = (): ReactElement => {
       password: "",
     },
     onSubmit: (value) => {
-      //@ts-ignore
-      //   setValues(value);
       updateCurrentUser(value);
     },
     validationSchema: formValidate,
@@ -158,7 +175,7 @@ const Settings: FC = (): ReactElement => {
       </form>
       <div className={styleSettings["logout-container"]}>
         <div className={styleSettings.line} />
-        <button className={styleSettings.logout}>
+        <button className={styleSettings.logout} onClick={handleLogout}>
           or Click here to logout
         </button>
       </div>

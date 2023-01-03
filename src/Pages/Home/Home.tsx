@@ -19,11 +19,6 @@ const Home: React.FC = (): ReactElement => {
   //@ts-ignore
 
   const { isLoggedIn, user } = useAuthContext();
-  console.log(user, isLoggedIn, "state");
-  // const onGlobalFeedClick = () => {
-  //   return <Article />;
-  // };
-
   return (
     <>
       {!isLoggedIn ? (

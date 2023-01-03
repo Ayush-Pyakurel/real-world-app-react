@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.container h1 {
+  text-align: center;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.update-form {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  gap: 10px;
+}
+
+.update-form button {
+  align-self: flex-end;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  background-color: #5dac5d;
+  border-color: #499749;
+  color: #fff;
+  cursor: pointer;
+}
+
+.update-form button:hover {
+  color: #fff;
+  cursor: pointer;
+  background-color: #449d44;
+  border-color: #419641;
+}
+
+.line {
+  margin: 3rem;
+  width: 450px;
+  height: 1px;
+  background-color: #404243;
+  align-self: center;
+}
+
+.logout {
+  display: inline-block;
+  font-weight: 400;
+  font-family: monospace;
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 0.5rem 0.95rem;
+  background-color: transparent;
+  border: 1px solid #b85c5c;
+  border-radius: 0.5rem;
+  width: 13rem;
+  color: #b85c5c;
+}
+
+.logout:hover {
+  color: #fff;
+  background-color: #b85c5c;
+  border-color: #b85c5c;
+}
+
+.logout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 450px;
+}

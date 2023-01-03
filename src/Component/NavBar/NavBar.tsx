@@ -6,6 +6,9 @@ import NavStyles from "./NavBar.module.css";
 
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const NavBar: React.FC = (): ReactElement => {
   //@ts-ignore
   const { isLoggedIn, user } = useAuthContext();
@@ -41,7 +44,7 @@ const NavBar: React.FC = (): ReactElement => {
               <Link to="/create-article">New Article</Link>
             </li>
             <li>
-              <Link to="/setting">Settings</Link>
+            <FontAwesomeIcon icon={faGear}/> <Link to="/settings">Settings</Link>
             </li>
             <li>
               <img src={user.image} alt="user" />{" "}

@@ -55,7 +55,7 @@ const NavBar: React.FC = (): ReactElement => {
             </li>
             <li>
               <img src={user.image} alt="user" />{" "}
-              <Link to="/setting">{user.username}</Link>
+              <Link to={`/profile/${user.username}`}>{user.username}</Link>
             </li>
           </ul>
         </div>

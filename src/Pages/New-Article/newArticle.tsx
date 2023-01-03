@@ -72,10 +72,12 @@ const NewArticle: React.FC = (): ReactElement => {
   return (
     <div className={newArticleStyles.container}>
       <ToastContainer position="top-center" autoClose={1000} />
+
       <form
         className={newArticleStyles["article-form"]}
         onSubmit={formik.handleSubmit}
       >
+        <h2 style={{ textAlign: "center" }}>New Article</h2>
         <input
           type="text"
           name="title"

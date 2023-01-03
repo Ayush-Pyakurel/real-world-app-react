@@ -1,0 +1,40 @@
+.banner-wrapper {
+  height: 15rem;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-wrapper img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.banner-wrapper .username {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.banner-wrapper .bio {
+  opacity: 0.33;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.banner-wrapper .btn-wrapper {
+  width: 50%;
+  margin-bottom: 1px;
+}
+
+.btn {
+  float: right;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  color: #999;
+  border: 1px solid #999;
+  border-radius: 10px solid grey;
+}

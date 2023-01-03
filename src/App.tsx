@@ -7,6 +7,7 @@ import Home from "./Pages/Home/Home";
 import NewArticle from "./Pages/New-Article/newArticle";
 import Settings from "./Pages/Setting-page/Settings";
 import Article from "./Pages/Article/Article";
+import Profile from "./Pages/Profile/Profile";
 
 //react router import
 import { Route, Routes } from "react-router-dom";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="/profile/:username" element={<Profile />} />
         <Route path="/create-article" element={<NewArticle />} />
         <Route path="/article" element={<Article />} />
 

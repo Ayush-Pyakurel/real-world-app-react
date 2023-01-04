@@ -16,7 +16,7 @@
 .articles {
   position: absolute;
   top: 5rem;
-  left: 0.5rem;
+  left: 0;
 }
 
 .line {
@@ -37,7 +37,7 @@
   padding-bottom: 7px;
   cursor: pointer;
   color: black;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .btn {

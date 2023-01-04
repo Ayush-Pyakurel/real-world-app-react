@@ -1,5 +1,42 @@
 .article-container {
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  width: 67rem;
-  margin-left: 15rem;
+  width: 58rem;
+  margin-left: 9rem;
+  margin-bottom: 0.5rem;
+  padding: 1.5rem 0rem 4rem 0;
+}
+
+.username a {
+  color: #379237;
+  text-decoration: none;
+}
+
+.username a:hover {
+  color: #3d8b3d;
+  text-decoration: underline;
+}
+
+.username p {
+  opacity: 0.9;
+  color: #999;
+  line-height: 1.3rem;
+  font-weight: 50;
+  font-size: 1rem;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.article-container span {
+  opacity: 0.9;
+  color: #999;
+  font-size: 1.2rem;
+  font-weight: 50;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.article-container .wrapper .read-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
 }

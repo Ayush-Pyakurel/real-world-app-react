@@ -19,6 +19,7 @@ import GlobalArticle from "./Component/Global Article/GlobalArticle";
 
 //login auth context import
 import { useAuthContext } from "./Hooks/useAuthContext";
+import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
   //@ts-ignore
@@ -33,11 +34,15 @@ function App() {
         {isLoggedIn && <Route path="/" element={<YourArticle />} />}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="/profile/:username" element={<Profile />} />
-        <Route path="/create-article" element={<NewArticle />} />
-        <Route path="/article" />
 
+        {/* Private Routes */}
+        <Route element={<PrivateRoutes />}>
+          <Route path="settings" element={<Settings />} />
+          <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/create-article" element={<NewArticle />} />
+        </Route>
+        <Route path="/article" />
+        <Route path="*" element="Page Not Found" />
         {/* <Route path="global-feed" element={<GlobalArticle />} />
           <Route path="your-feed" element={<YourArticle />} /> */}
       </Routes>

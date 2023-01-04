@@ -7,6 +7,7 @@ import styleProfile from "./Profile.module.css";
 const Profile: FC = (): ReactElement => {
   const navigate = useNavigate();
   const { username } = useParams();
+
   const [profile, setProfile] = useState({
     bio: "",
     follow: false,
@@ -18,7 +19,6 @@ const Profile: FC = (): ReactElement => {
     axios
       .get(`https://api.realworld.io/api/profiles/${username}`)
       .then((response) => {
-        console.log(response.data.profile, "response");
         setProfile((prev): any => {
           return {
             ...prev,
@@ -30,7 +30,6 @@ const Profile: FC = (): ReactElement => {
         });
       });
   }, []);
-  console.log(profile, "state");
 
   const handleRedirectionToSettings = () => {
     navigate("/settings");

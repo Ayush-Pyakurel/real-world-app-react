@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { FC, ReactElement } from "react";
 
@@ -38,24 +38,48 @@ const NavBar: React.FC = (): ReactElement => {
         <div className={NavStyles.listContainer}>
           <ul className={NavStyles.navList}>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                style={({ isActive }) => ({
+                  color: isActive ? "#5cb85c" : "black",
+                })}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <FontAwesomeIcon icon={faFileCirclePlus} />
-              <Link
+              <NavLink
                 to="/create-article"
+                style={({ isActive }) => ({
+                  color: isActive ? "#5cb85c" : "black",
+                })}
                 className={NavStyles["new-article-icon"]}
               >
+                <FontAwesomeIcon icon={faFileCirclePlus} />
                 New Article
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <FontAwesomeIcon icon={faGear} />{" "}
-              <Link to="/settings">Settings</Link>
+              <NavLink
+                to="/settings"
+                style={({ isActive }) => ({
+                  color: isActive ? "#5cb85c" : "black",
+                })}
+              >
+                <FontAwesomeIcon icon={faGear} />
+                Settings
+              </NavLink>
             </li>
             <li>
-              <img src={user.image} alt="user" />{" "}
-              <Link to={`/profile/${user.username}`}>{user.username}</Link>
+              <NavLink
+                to={`/profile/${user.username}`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#5cb85c" : "black",
+                })}
+              >
+                <img src={user.image} alt="user" />
+                {user.username}
+              </NavLink>
             </li>
           </ul>
         </div>

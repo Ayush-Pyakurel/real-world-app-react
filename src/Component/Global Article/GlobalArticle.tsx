@@ -42,8 +42,6 @@ const GlobalArticle = () => {
     handleFetchArticle();
   }, []);
 
-  console.log(articles);
-
   return (
     <div>
       <article>

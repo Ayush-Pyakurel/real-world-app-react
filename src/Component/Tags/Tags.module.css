@@ -1,7 +1,7 @@
 .tags {
   width: 250px;
   position: absolute;
-  top: 16rem;
+  top: 18rem;
   right: 9rem;
   background-color: #f3f3f3;
   padding: 4px;
@@ -70,7 +70,7 @@
 .tags p {
   align-self: flex-start;
   margin: 4px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: #373a3c;
@@ -78,7 +78,7 @@
 .logged-tags p {
   align-self: flex-start;
   margin: 4px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: #373a3c;

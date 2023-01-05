@@ -9,6 +9,13 @@
   /* border: 2px solid grey; */
   position: relative;
   box-sizing: border-box;
+  margin: 2rem 3.5rem 0rem 3.5rem;
+  height: 90vh;
+}
+.out-container {
+  /* border: 2px solid grey; */
+  position: relative;
+  box-sizing: border-box;
   margin: 1rem 3.5rem 0rem 3.5rem;
   height: 90vh;
 }

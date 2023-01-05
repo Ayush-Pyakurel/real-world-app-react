@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import stylesGlobalFeed from './GlobalArticle.module.css';
 
@@ -31,14 +31,16 @@ export interface ArticleResponse {
 
 const GlobalArticle = () => {
   const [articles, setArticles] = useState<any>([]);
-  const { username } = useParams();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const handleFetchArticle = async () => {
+      setLoading(true);
       await axios
         .get<ArticleResponse>('https://api.realworld.io/api/articles')
         .then((response: any) => {
           setArticles(response.data.articles);
+          setLoading(false);
         });
     };
     handleFetchArticle();
@@ -50,8 +52,11 @@ const GlobalArticle = () => {
         {articles.map((item: Article, index: number) => {
           return (
             <>
-              <div className={stylesGlobalFeed['article-container']}>
-                <div key={index} className={stylesGlobalFeed['wrapper']}>
+              <div
+                key={index}
+                className={stylesGlobalFeed['article-container']}
+              >
+                <div className={stylesGlobalFeed['wrapper']}>
                   <img src={item.author.image} alt='user-image' />
                   <div className={stylesGlobalFeed.username}>
                     <Link to={`/profile/${item.author.username}`}>

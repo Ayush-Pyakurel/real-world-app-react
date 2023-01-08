@@ -15,14 +15,14 @@
 }
 
 .banner-wrapper .username {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
 }
 
 .banner-wrapper .bio {
   opacity: 0.33;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .banner-wrapper .btn-wrapper {
@@ -37,4 +37,22 @@
   color: #999;
   border: 1px solid #999;
   border-radius: 10px solid grey;
+}
+
+.article-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.line {
+  border-bottom: 1px solid grey;
+  width: 55rem;
+}
+
+.menu-btn {
+  background-color: transparent;
+  border: none;
+  margin: 0rem 1rem 0.5rem 0.2rem;
+  color: #999;
 }

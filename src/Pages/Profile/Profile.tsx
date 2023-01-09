@@ -1,9 +1,9 @@
-import axios from 'axios';
-import { useEffect, useState, FC, ReactElement } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import MyArticles from '../../Component/My Articles/MyArticles';
+import axios from "axios";
+import { useEffect, useState, FC, ReactElement } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import MyArticles from "../../Component/My Articles/MyArticles";
 
-import styleProfile from './Profile.module.css';
+import styleProfile from "./Profile.module.css";
 
 const Profile: FC = (): ReactElement => {
   const navigate = useNavigate();
@@ -12,10 +12,10 @@ const Profile: FC = (): ReactElement => {
   const [component, setComponent] = useState();
 
   const [profile, setProfile] = useState({
-    bio: '',
+    bio: "",
     follow: false,
-    image: '',
-    username: '',
+    image: "",
+    username: "",
   });
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Profile: FC = (): ReactElement => {
   }, []);
 
   const handleRedirectionToSettings = () => {
-    navigate('/settings');
+    navigate("/settings");
   };
 
   const handleClick = (component: any) => {
@@ -44,11 +44,11 @@ const Profile: FC = (): ReactElement => {
 
   return (
     <>
-      <section className={styleProfile['banner-wrapper']}>
-        <img src={profile.image} alt='user-profile-image' />
+      <section className={styleProfile["banner-wrapper"]}>
+        <img src={profile.image} alt="user-profile-image" />
         <h3 className={styleProfile.username}>{profile.username}</h3>
         <span className={styleProfile.bio}>{profile.bio}</span>
-        <div className={styleProfile['btn-wrapper']}>
+        <div className={styleProfile["btn-wrapper"]}>
           <button
             className={styleProfile.btn}
             onClick={handleRedirectionToSettings}
@@ -57,29 +57,29 @@ const Profile: FC = (): ReactElement => {
           </button>
         </div>
       </section>
-      <section className={styleProfile['article-wrapper']}>
+      <section className={styleProfile["article-wrapper"]}>
         <div className={styleProfile.line}>
-          <div className={styleProfile['sub-menu']}>
+          <div className={styleProfile["sub-menu"]}>
             <button
-              className={styleProfile['menu-btn']}
-              onClick={() => handleClick('my-article')}
+              className={styleProfile["menu-btn"]}
+              onClick={() => handleClick("my-article")}
             >
               My Articles
             </button>
             <button
-              className={styleProfile['menu-btn']}
-              onClick={() => handleClick('favorited-articles')}
+              className={styleProfile["menu-btn"]}
+              onClick={() => handleClick("favorited-articles")}
             >
               Favorited Articles
             </button>
           </div>
         </div>
-        {component === 'my-article' ? (
-          <MyArticles />
-        ) : (
-          'Component not generated yet!'
-        )}
       </section>
+      {component === "my-article" ? (
+        <MyArticles />
+      ) : (
+        "Component not generated yet!"
+      )}
     </>
   );
 };

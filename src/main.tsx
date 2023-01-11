@@ -9,21 +9,18 @@ import { LoginContexProvider } from "./Context/LoginContext";
 //react query import
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import ArticleContext from "./Context/ArticleContext";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <LoginContexProvider>
-      <ArticleContext>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-          <ReactQueryDevtools initialIsOpen />
-        </QueryClientProvider>
-      </ArticleContext>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen />
+      </QueryClientProvider>
     </LoginContexProvider>
   </React.StrictMode>
 );

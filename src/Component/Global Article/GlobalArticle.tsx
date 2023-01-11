@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import stylesGlobalFeed from "./GlobalArticle.module.css";
-import useArticleContext from "../../Hooks/useArticleContext";
 
 export interface Author {
   username: string;
@@ -33,7 +32,6 @@ export interface ArticleResponse {
 const GlobalArticle = () => {
   const [articles, setArticles] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [ setArticleSlug ]: any = useArticleContext();
 
   useEffect(() => {
     const handleFetchArticle = async () => {
@@ -43,7 +41,6 @@ const GlobalArticle = () => {
         .then((response: any) => {
           setArticles(response.data.articles);
           setLoading(false);
-          console.log(setArticleSlug(response.data.articles), "slugsssss");
         });
     };
     handleFetchArticle();

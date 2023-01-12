@@ -29,20 +29,12 @@
   height: auto;
   padding: 2px;
   border-radius: 0.25rem;
-
-  background-color: #5cb85c;
-  border-color: #5cb85c;
 }
 
 .user-like-container .like span {
   display: flex;
   justify-content: space-around;
   padding-top: 0.5rem;
-    color: rgb(255, 255, 255);
-}
-
-.user-like-container .like:hover {
-  cursor: pointer;
 }
 
 .user-detail small {

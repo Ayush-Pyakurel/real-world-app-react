@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import stylesMyArticle from './MyArticles.module.css';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 export interface Author {
   username: string;
@@ -56,9 +58,9 @@ const MyArticles = () => {
   }, []);
 
   return (
-    <div>
+    <section>
       {loading ? (
-        <h5>loading articles...</h5>
+        <h5 className={stylesMyArticle.loading}>loading articles...</h5>
       ) : (
         <article>
           {myArticles.map((myArticle: any, index: number) => {
@@ -78,7 +80,7 @@ const MyArticles = () => {
           })}
         </article>
       )}
-    </div>
+    </section>
   );
 };
 

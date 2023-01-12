@@ -15,18 +15,18 @@
 }
 
 .banner-wrapper .username {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
 }
 
 .banner-wrapper .bio {
   opacity: 0.33;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .banner-wrapper .btn-wrapper {
-  width: 50%;
+  width: 57rem;
   margin-bottom: 1px;
 }
 

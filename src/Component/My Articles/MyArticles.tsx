@@ -71,19 +71,19 @@ const MyArticles = () => {
                 <figure>
                   <img src={myArticle.author.image} alt="user-image" />
                 </figure>
-                <div className={stylesMyArticle['user-like-container']}>
-                <div className={stylesMyArticle["user-detail"]}>
-                  <Link to={`/profile/${myArticle.author.username}`}>
-                    {myArticle.author.username}
-                  </Link>
-                  <small>{myArticle.createdAt.toString().slice(0, 10)}</small>
-                </div>
-                <div className={stylesMyArticle.like}>
-                  <span>
-                    <FontAwesomeIcon icon={faHeart} />{" "}
-                    {myArticle.favoritesCount}
-                  </span>
-                </div>
+                <div className={stylesMyArticle["user-like-container"]}>
+                  <div className={stylesMyArticle["user-detail"]}>
+                    <Link to={`/profile/${myArticle.author.username}`}>
+                      {myArticle.author.username}
+                    </Link>
+                    <small>{myArticle.createdAt.toString().slice(0, 10)}</small>
+                  </div>
+                  <div className={stylesMyArticle.like}>
+                    <span>
+                      <FontAwesomeIcon icon={faHeart} />
+                      {myArticle.favoritesCount}
+                    </span>
+                  </div>
                 </div>
                 <div className={stylesMyArticle["article-body"]}>
                   <h3 className={stylesMyArticle.title}>{myArticle.title}</h3>

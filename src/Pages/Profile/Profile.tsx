@@ -76,10 +76,10 @@ const Profile: FC = (): ReactElement => {
           </div>
         </div>
       </section>
-      {component === "my-article" ? (
-        <MyArticles />
+      {component === "favorited-articles" ? (
+        <FavoritedArticles/>
       ) : (
-         <FavoritedArticles/>
+        <MyArticles />
       )}
     </>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import stylesFavoritedArticles from "./FavoritedArticles.module.css";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const FavoritedArticles: FC = (): ReactElement => {
     setLoading(true);
     axios
       .get(
-        `https://api.realworld.io/api/articles/?favorited=iron&limit=5&offset=0`,
+        `https://api.realworld.io/api/articles/?favorited=${user.username}&limit=5&offset=0`,
         {
           headers: {
             "content-type": "application/json",

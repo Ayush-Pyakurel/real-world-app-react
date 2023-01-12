@@ -42,8 +42,7 @@ const MyArticles = () => {
     setLoading(true);
     axios
       .get(
-        `https://api.realworld.io/api/articles/? 
-         author=${user.username}&limit=5&offset=0`,
+        `https://api.realworld.io/api/articles/?author=${user.username}&limit=5&offset=0`,
         {
           headers: {
             'content-type': 'application/json',

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import MyArticles from "../../Component/My Articles/MyArticles";
 
 import styleProfile from "./Profile.module.css";
+import FavoritedArticles from "../../Component/Favorited Articles/FavoritedArticles";
 
 const Profile: FC = (): ReactElement => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const Profile: FC = (): ReactElement => {
       {component === "my-article" ? (
         <MyArticles />
       ) : (
-        "Component not generated yet!"
+         <FavoritedArticles/>
       )}
     </>
   );

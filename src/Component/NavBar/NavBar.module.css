@@ -42,6 +42,10 @@ a:hover {
   transition: 0.5 s all;
 }
 
+figure {
+  display: flex;
+}
+
 img {
   height: 26px;
   border-radius: 50%;

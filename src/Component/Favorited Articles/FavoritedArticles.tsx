@@ -1,23 +1,21 @@
 import axios from "axios";
-import { FC, ReactElement, useContext, useEffect, useState } from "react";
-import { useAuthContext } from "../../Hooks/useAuthContext";
+import { FC, ReactElement, useEffect, useState } from "react";
 import stylesFavoritedArticles from "./FavoritedArticles.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const FavoritedArticles: FC = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [favoritedArticles, setFavoritedArticles] = useState([]);
+   const { username } = useParams();
 
-  //@ts-ignore
-  const { user } = useAuthContext();
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `https://api.realworld.io/api/articles/?favorited=${user.username}&limit=5&offset=0`,
+        `https://api.realworld.io/api/articles/?favorited=${username}&limit=5&offset=0`,
         {
           headers: {
             "content-type": "application/json",
@@ -29,7 +27,7 @@ const FavoritedArticles: FC = (): ReactElement => {
         setFavoritedArticles(response.data.articles);
         setLoading(false);
       });
-  }, []);
+  }, [username]);
 
   return (
     <section>
@@ -43,9 +41,7 @@ const FavoritedArticles: FC = (): ReactElement => {
                 key={index}
                 className={stylesFavoritedArticles["myArticle-container"]}
               >
-                <figure>
-                  <img src={favoritedArticle.author.image} alt="user-image" />
-                </figure>
+                <img src={favoritedArticle.author.image} alt="user-image" />
                 <div className={stylesFavoritedArticles["user-like-container"]}>
                   <div className={stylesFavoritedArticles["user-detail"]}>
                     <Link to={`/profile/${favoritedArticle.author.username}`}>

@@ -72,13 +72,15 @@ const NavBar: React.FC = (): ReactElement => {
             </li>
             <li>
               <NavLink
-                to={`/profile/${user.username}`}
+                to={`/profile/${user?.username}`}
                 style={({ isActive }) => ({
                   color: isActive ? "#5cb85c" : "black",
                 })}
               >
-                <img src={user.image} alt="user" />
-                {user.username}
+                <figure>
+                  <img src={user?.image} alt="user" />
+                  <figcaption>{user?.username}</figcaption>
+                </figure>
               </NavLink>
             </li>
           </ul>

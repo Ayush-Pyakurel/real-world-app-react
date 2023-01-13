@@ -1,21 +1,21 @@
 //react import
-import { ReactElement, useContext, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from "react";
 
 //component imports
-import Banner from '../../Component/Banner/Banner';
-import Tags from '../../Component/Tags/Tags';
-import Article from '../Article/Article';
+import Banner from "../../Component/Banner/Banner";
+import Tags from "../../Component/Tags/Tags";
+import Article from "../Article/Article";
 
-import { useAuthContext } from '../../Hooks/useAuthContext';
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
-import stylesHome from './Home.module.css';
-import { NavLink } from 'react-router-dom';
+import stylesHome from "./Home.module.css";
+import { NavLink } from "react-router-dom";
 
 //react router import
 // import { NavLink, Outlet } from "react-router-dom";
 
-import YourArticle from '../../Component/Your Article/YourArticle';
-import GlobalArticle from '../../Component/Global Article/GlobalArticle';
+import YourArticle from "../../Component/Your Article/YourArticle";
+import GlobalArticle from "../../Component/Global Article/GlobalArticle";
 
 interface navLinks {
   activeClassName: string;
@@ -27,8 +27,16 @@ const Home: React.FC = (): ReactElement => {
   //@ts-ignore
   const { isLoggedIn, user } = useAuthContext();
 
-  const handleChange = (id: any) => {
-    setComponent(id);
+  useEffect(() => {
+    function handleChange(id: any) {
+      setComponent(id);
+    }
+
+    handleChange("global-feed");
+  }, []);
+
+  const handleArticleChange = (component: any) => {
+    setComponent(component);
   };
 
   return (
@@ -38,21 +46,16 @@ const Home: React.FC = (): ReactElement => {
           <Banner />
           <div
             className={
-              !isLoggedIn ? stylesHome['out-container'] : stylesHome.container
+              !isLoggedIn ? stylesHome["out-container"] : stylesHome.container
             }
           >
             <div className={stylesHome.line}>
-              <div className={stylesHome['sub-menu']}>
-                <button
-                  className={stylesHome.btn}
-                  onClick={() => handleChange('global-feed')}
-                >
-                  Global Feed
-                </button>
+              <div className={stylesHome["sub-menu"]}>
+                <button className={stylesHome.btn}>Global Feed</button>
               </div>
             </div>
             <div className={stylesHome.articles}>
-              {component === 'global-feed' ? <GlobalArticle /> : ''}
+              {component === "global-feed" ? <GlobalArticle /> : ""}
             </div>
           </div>
           <Tags />
@@ -61,23 +64,23 @@ const Home: React.FC = (): ReactElement => {
         <>
           <div className={stylesHome.container}>
             <div className={stylesHome.line}>
-              <div className={stylesHome['sub-menu']}>
+              <div className={stylesHome["sub-menu"]}>
                 <button
                   className={stylesHome.btn}
-                  onClick={() => handleChange('your-feed')}
+                  onClick={() => handleArticleChange("your-feed")}
                 >
                   Your Feed
                 </button>
                 <button
                   className={stylesHome.btn}
-                  onClick={() => handleChange('global-feed')}
+                  onClick={() => handleArticleChange("global-feed")}
                 >
                   Global Feed
                 </button>
               </div>
             </div>
             <div className={stylesHome.articles}>
-              {component === 'your-feed' ? <YourArticle /> : <GlobalArticle />}
+              {component === "your-feed" ? <YourArticle /> : <GlobalArticle />}
               {/* <span>No article are here... yet</span> */}
             </div>
           </div>

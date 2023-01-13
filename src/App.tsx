@@ -35,11 +35,11 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/create-article" element={<NewArticle />} />
+          <Route path="/article/:slug" element={<Article />} />
         </Route>
-        <Route path="/article/:slug" />
+        
+        {/* Page not found */}
         <Route path="*" element="Page Not Found" />
-        {/* <Route path="global-feed" element={<GlobalArticle />} />
-          <Route path="your-feed" element={<YourArticle />} /> */}
       </Routes>
     </>
   );

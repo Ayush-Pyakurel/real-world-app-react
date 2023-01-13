@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import stylesMyArticle from './MyArticles.module.css';
-import { useAuthContext } from '../../Hooks/useAuthContext';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
+import { FC, ReactElement, useEffect, useState } from "react";
+import stylesMyArticle from "./MyArticles.module.css";
+import { useAuthContext } from "../../Hooks/useAuthContext";
+import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export interface Author {
   username: string;
@@ -31,30 +31,28 @@ export interface ArticleResponse {
   articlesCount: number;
 }
 
-const MyArticles = () => {
+const MyArticles: FC = (): ReactElement => {
   const [myArticles, setMyArticles] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-
-  //@ts-ignore
-  const { user } = useAuthContext();
+  const { username } = useParams();
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `https://api.realworld.io/api/articles/?author=${user.username}&limit=5&offset=0`,
+        `https://api.realworld.io/api/articles/?author=${username}&limit=5&offset=0`,
         {
           headers: {
-            'content-type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('Token')}`,
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("Token")}`,
           },
-        }               
+        }
       )
       .then((response: any) => {
         setMyArticles(response.data.articles);
         setLoading(false);
       });
-  }, []);
+  }, [username]);
 
   return (
     <section>
@@ -66,13 +64,12 @@ const MyArticles = () => {
             return (
               <div
                 key={index}
-                className={stylesMyArticle['myArticle-container']}
+                className={stylesMyArticle["myArticle-container"]}
               >
-                <figure>
-                  <img src={myArticle.author.image} alt='user-image' />
-                </figure>
-                <div className={stylesMyArticle['user-like-container']}>
-                  <div className={stylesMyArticle['user-detail']}>
+                <img src={myArticle.author.image} alt="user-image" />
+
+                <div className={stylesMyArticle["user-like-container"]}>
+                  <div className={stylesMyArticle["user-detail"]}>
                     <Link to={`/profile/${myArticle.author.username}`}>
                       {myArticle.author.username}
                     </Link>
@@ -85,7 +82,7 @@ const MyArticles = () => {
                     </span>
                   </div>
                 </div>
-                <div className={stylesMyArticle['article-body']}>
+                <div className={stylesMyArticle["article-body"]}>
                   <h3 className={stylesMyArticle.title}>{myArticle.title}</h3>
                   <span className={stylesMyArticle.description}>
                     {myArticle.description}

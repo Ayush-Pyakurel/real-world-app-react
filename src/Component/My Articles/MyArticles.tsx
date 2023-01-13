@@ -43,13 +43,13 @@ const MyArticles = () => {
     axios
       .get(
         `https://api.realworld.io/api/articles/? 
-         author=${user.username}&limit=5&offset=0`,
+         author=${user.username}&limit=5&o                                                                                                                                                                                                                 ffset=0`,
         {
           headers: {
             'content-type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('Token')}`,
           },
-        }
+        }               
       )
       .then((response: any) => {
         setMyArticles(response.data.articles);

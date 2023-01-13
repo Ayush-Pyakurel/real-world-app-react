@@ -14,11 +14,9 @@ import { Route, Routes } from "react-router-dom";
 
 //component import
 import NavBar from "./Component/NavBar/NavBar";
-import YourArticle from "./Component/Your Article/YourArticle";
-import GlobalArticle from "./Component/Global Article/GlobalArticle";
 
-//login auth context import
-import { useAuthContext } from "./Hooks/useAuthContext";
+
+//private route import
 import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
@@ -37,7 +35,7 @@ function App() {
           <Route path="/create-article" element={<NewArticle />} />
           <Route path="/article/:slug" element={<Article />} />
         </Route>
-        
+
         {/* Page not found */}
         <Route path="*" element="Page Not Found" />
       </Routes>

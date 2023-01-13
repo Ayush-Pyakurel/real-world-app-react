@@ -1,40 +1,32 @@
-.container {
-  /* border: 2px solid grey; */
-  position: relative;
-  box-sizing: border-box;
-  margin: 1rem 3.5rem 0rem 3.5rem;
-  height: 90vh;
-}
-
-.articles {
-  position: absolute;
-  top: 5rem;
-  left: 10rem;
-}
-
-.line {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  width: 55rem;
-  position: absolute;
-  top: 1.5rem;
-  left: 10rem;
-}
-
-.line .sub-menu {
-  display: flex;
-}
-
-.sub-menu a {
-  text-decoration: none;
-  margin-right: 1.5rem;
-  padding-bottom: 7px;
-  cursor: pointer;
-  color: black;
+.banner {
+  color: #fff;
+  background: #333;
+  padding:  2rem 0rem 2rem 30rem;
   font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  box-sizing: border-box;
+  height: 11rem;
+  display: flex;
+  flex-direction: column;
 }
 
-/* .tags-container {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-} */
+figcaption{
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
+h2{
+  margin-bottom: 2rem;
+}
+
+.user-detail{
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-btn,.delete-btn{
+  width: 7rem;
+  height: 1.5rem;
+}

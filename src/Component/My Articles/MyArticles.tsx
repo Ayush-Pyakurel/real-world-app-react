@@ -87,7 +87,7 @@ const MyArticles: FC = (): ReactElement => {
                   <span className={stylesMyArticle.description}>
                     {myArticle.description}
                   </span>
-                  <Link to={`article/${myArticle.slug}`}>Read More...</Link>
+                  <Link to={`/article/${myArticle.slug}`}>Read More...</Link>
                 </div>
               </div>
             );

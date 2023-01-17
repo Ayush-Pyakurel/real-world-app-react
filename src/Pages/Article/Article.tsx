@@ -2,7 +2,7 @@ import axios from "axios";
 import { ReactElement, FC, useEffect, useState, SyntheticEvent } from "react";
 
 import stylesArticle from "./Article.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //font-awesome icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,6 +37,7 @@ const Article: FC = (): ReactElement => {
   const { slug } = useParams();
   const [articles, setArticles] = useState<MainArticle>();
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -48,6 +49,17 @@ const Article: FC = (): ReactElement => {
 
   const handleCommentsubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+  };
+
+  const handleArticleEdit = () => {
+    navigate("/create-article", {
+      state: {
+        title: articles?.article.title,
+        description: articles?.article?.description,
+        body: articles?.article?.body,
+        tags: [articles?.article?.tagList]
+      },
+    });
   };
 
   return (
@@ -68,7 +80,10 @@ const Article: FC = (): ReactElement => {
               </span>
             </figcaption>
           </figure>
-          <button className={stylesArticle["edit-btn"]}>
+          <button
+            className={stylesArticle["edit-btn"]}
+            onClick={handleArticleEdit}
+          >
             <span className={stylesArticle["edit-icon-text-wrapper"]}>
               <FontAwesomeIcon icon={faPen} />
               <span>Edit Article</span>
@@ -87,9 +102,11 @@ const Article: FC = (): ReactElement => {
       <article className={stylesArticle["article-body"]}>
         <p>{articles?.article?.body}</p>
         {articles?.article?.tagList.map((tag: any, index: number) => {
-          return (<ul key={index}>
+          return (
+            <ul key={index}>
               <li>{tag}</li>
-          </ul>)
+            </ul>
+          );
         })}
         <div />
       </article>
@@ -122,7 +139,10 @@ const Article: FC = (): ReactElement => {
             </span>
           </button>
         </div>
-        <form onSubmit={handleCommentsubmit}>
+        <form
+          onSubmit={handleCommentsubmit}
+          className={stylesArticle["comment-form"]}
+        >
           <div className={stylesArticle["comment-wrapper"]}>
             <textarea
               className={stylesArticle.comment}
@@ -130,7 +150,6 @@ const Article: FC = (): ReactElement => {
               onChange={(e) => setComment(e.target.value)}
               value={comment}
               placeholder="Write a comment..."
-              
             />
 
             <footer className={stylesArticle["btn-section"]}>

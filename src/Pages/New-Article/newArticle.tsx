@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 //styles import
 import newArticleStyles from "./newArticle.module.css";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 //formik import
 import { useFormik } from "formik";
@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const NewArticle: React.FC = (): ReactElement => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   //function to handle article submission
   const createArticelSubmit = (inputValue: any) => {
@@ -83,7 +84,7 @@ const NewArticle: React.FC = (): ReactElement => {
           name="title"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.title}
+          value={location.state ? location.state.title : formik.values.title}
           placeholder="Article Title"
         />
         <div className={newArticleStyles.error}>
@@ -94,7 +95,9 @@ const NewArticle: React.FC = (): ReactElement => {
           name="about"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.about}
+          value={
+            location.state ? location.state.description : formik.values.about
+          }
           placeholder="About Article"
         />
         <div className={newArticleStyles.error}>
@@ -104,7 +107,7 @@ const NewArticle: React.FC = (): ReactElement => {
           name="article"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.article}
+          value={location.state ? location.state.body : formik.values.article}
           placeholder="Write your article"
         />
         <div className={newArticleStyles.error}>
@@ -117,7 +120,7 @@ const NewArticle: React.FC = (): ReactElement => {
           name="tags"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.tags}
+          value={location.state ? location.state.tags : formik.values.tags}
           placeholder="Enter Tags"
         />
         <div className={newArticleStyles["btn-container"]}>

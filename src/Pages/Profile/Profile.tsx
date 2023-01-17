@@ -6,37 +6,46 @@ import MyArticles from "../../Component/My Articles/MyArticles";
 import styleProfile from "./Profile.module.css";
 import FavoritedArticles from "../../Component/Favorited Articles/FavoritedArticles";
 
+export interface IProfile {
+  profile: { username: string; bio: string; image: string; follow: boolean };
+}
+
+const initialProfileState = {
+  profile: {
+    bio: "",
+    follow: false,
+    image: "",
+    username: "",
+  },
+};
+
 const Profile: FC = (): ReactElement => {
   const navigate = useNavigate();
   const { username } = useParams();
 
   const [component, setComponent] = useState();
+  const [profile, setProfile] = useState<IProfile>(initialProfileState);
 
-  const [profile, setProfile] = useState({
-    bio: "",
-    follow: false,
-    image: "",
-    username: "",
-  });
+  const email = JSON.parse(localStorage.getItem("user") || "{}");
+ 
 
   useEffect(() => {
     axios
-      .get(`https://api.realworld.io/api/profiles/${username}`)
+      .get<IProfile>(`https://api.realworld.io/api/profiles/${username}`)
       .then((response) => {
-        setProfile((prev): any => {
-          return {
-            ...prev,
-            bio: response.data.profile.bio,
-            follow: response.data.profile.follow,
-            image: response.data.profile.image,
-            username: response.data.profile.username,
-          };
-        });
+        setProfile(response.data);
       });
   }, []);
 
   const handleRedirectionToSettings = () => {
-    navigate("/settings");
+   return navigate("/settings", {
+     state: {
+       image: profile?.profile?.image,
+       username: profile?.profile?.username,
+       bio: profile?.profile?.bio,
+       email: email.user.email,
+     },
+   });
   };
 
   const handleClick = (component: any) => {
@@ -46,9 +55,9 @@ const Profile: FC = (): ReactElement => {
   return (
     <>
       <section className={styleProfile["banner-wrapper"]}>
-        <img src={profile.image} alt="user-profile-image" />
-        <h3 className={styleProfile.username}>{profile.username}</h3>
-        <span className={styleProfile.bio}>{profile.bio}</span>
+        <img src={profile?.profile?.image} alt="user-profile-image" />
+        <h3 className={styleProfile.username}>{profile?.profile?.username}</h3>
+        <span className={styleProfile.bio}>{profile?.profile?.bio}</span>
         <div className={styleProfile["btn-wrapper"]}>
           <button
             className={styleProfile.btn}
@@ -77,7 +86,7 @@ const Profile: FC = (): ReactElement => {
         </div>
       </section>
       {component === "favorited-articles" ? (
-        <FavoritedArticles/>
+        <FavoritedArticles />
       ) : (
         <MyArticles />
       )}

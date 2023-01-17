@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ReactElement, FC, useEffect, useState } from "react";
+import { ReactElement, FC, useEffect, useState, SyntheticEvent } from "react";
 
 import stylesArticle from "./Article.module.css";
 import { useParams } from "react-router-dom";
@@ -36,6 +36,7 @@ export interface MainArticle {
 const Article: FC = (): ReactElement => {
   const { slug } = useParams();
   const [articles, setArticles] = useState<MainArticle>();
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     axios
@@ -45,12 +46,17 @@ const Article: FC = (): ReactElement => {
       });
   }, []);
 
+  const handleCommentsubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <>
+      {/* banner section */}
       <main className={stylesArticle.banner}>
         <h1>{articles?.article.title}</h1>
-        <div className={stylesArticle["user-detail"]}>
-          <figure>
+        <div className={stylesArticle["banner-user-detail"]}>
+          <figure className={stylesArticle["banner-user-image"]}>
             <img src={articles?.article?.author?.image} alt="user-image" />
             <figcaption>
               <span className={stylesArticle.username}>
@@ -76,10 +82,68 @@ const Article: FC = (): ReactElement => {
           </button>
         </div>
       </main>
-      <article className={stylesArticle['article-body']}>
-          <p>{articles?.article?.body}</p>
-          <div/>
+
+      {/* article body */}
+      <article className={stylesArticle["article-body"]}>
+        <p>{articles?.article?.body}</p>
+        {articles?.article?.tagList.map((tag: any, index: number) => {
+          return (<ul key={index}>
+              <li>{tag}</li>
+          </ul>)
+        })}
+        <div />
       </article>
+
+      {/* comment section */}
+      <section className={stylesArticle["section-wrapper"]}>
+        <div className={stylesArticle["section-user-detail"]}>
+          <figure className={stylesArticle["section-user-image"]}>
+            <img src={articles?.article?.author?.image} alt="user-image" />
+            <figcaption>
+              <span className={stylesArticle.username}>
+                {articles?.article?.author?.username}
+              </span>
+              <br />
+              <span className={stylesArticle["section-date"]}>
+                {articles?.article?.createdAt.toString().slice(0, 10)}
+              </span>
+            </figcaption>
+          </figure>
+          <button className={stylesArticle["section-edit-btn"]}>
+            <span className={stylesArticle["section-edit-icon-text-wrapper"]}>
+              <FontAwesomeIcon icon={faPen} />
+              <span>Edit Article</span>
+            </span>
+          </button>
+          <button className={stylesArticle["section-delete-btn"]}>
+            <span className={stylesArticle["section-delete-icon-text-wrapper"]}>
+              <FontAwesomeIcon icon={faTrashCan} />
+              <span>Delete Article</span>
+            </span>
+          </button>
+        </div>
+        <form onSubmit={handleCommentsubmit}>
+          <div className={stylesArticle["comment-wrapper"]}>
+            <textarea
+              className={stylesArticle.comment}
+              name="comment"
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
+              placeholder="Write a comment..."
+              
+            />
+
+            <footer className={stylesArticle["btn-section"]}>
+              <figure>
+                <img src={articles?.article?.author?.image} alt="user-image" />
+              </figure>
+              <button className={stylesArticle["comment-btn"]}>
+                Post Comment
+              </button>
+            </footer>
+          </div>
+        </form>
+      </section>
     </>
   );
 };

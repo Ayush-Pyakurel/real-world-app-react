@@ -11,7 +11,7 @@
   flex-direction: column;
 }
 
-figure figcaption .date {
+.banner-user-image figcaption .date {
   opacity: 0.5;
   font-size: small;
   font-weight: 500;
@@ -27,16 +27,16 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.user-detail {
+.banner-user-detail {
   display: flex;
   gap: 1rem;
 }
 h2,
-.user-detail {
+.banner-user-detail {
   margin-left: 0rem;
 }
 
-.user-detail .edit-btn,
+.banner-user-detail .edit-btn,
 .delete-btn {
   width: 8rem;
   height: 2rem;
@@ -45,42 +45,183 @@ h2,
   border-radius: 0.2rem;
 }
 
-.user-detail .edit-btn {
+.banner-user-detail .edit-btn {
   margin-left: 2rem;
   color: white;
   font-size: smaller;
   border: 1px solid white;
   opacity: 0.6;
+  cursor: pointer;
 }
-.user-detail .delete-btn {
+.banner-user-detail .delete-btn {
   color: red;
   font-size: smaller;
   border: 1px solid red;
   opacity: 0.6;
+  cursor: pointer;
 }
 
-.user-detail .edit-btn .edit-icon-text-wrapper span {
+.banner-user-detail .delete-btn:hover {
+  color: #fff;
+  background-color: #b85c5c;
+  border-color: #b85c5c;
+  transition: 0.1s all;
+  opacity: 1;
+}
+
+.banner-user-detail .edit-btn:hover {
+  transition: 0.1s all;
+  opacity: 1;
+  color: #fff;
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.banner-user-detail .edit-btn .edit-icon-text-wrapper span {
   margin-left: 0.4rem;
 }
 
-.user-detail .delete-btn .delete-icon-text-wrapper span {
+.banner-user-detail .delete-btn .delete-icon-text-wrapper span {
   margin-left: 0.3rem;
 }
 
-.article-body{
+.article-body {
   padding: 2rem 30rem 0rem 30rem;
   font-family: "Source Serif Pro", serif;
   font-size: 1.2rem;
   line-height: 1.8rem;
-  
 }
 
-.article-body p{
+.article-body p {
   width: fit-content;
-  padding-bottom: 4.5rem;
+  padding-bottom: 3.5rem;
 }
 
-.article-body div{
+.article-body ul {
+  border: 1px solid grey;
+  width: max-content;
+  border-radius: 4rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.article-body ul li {
+  text-decoration: none;
+  list-style: none;
+  font-size: large;
+  opacity: 0.3;
+}
+
+.article-body div {
   border-bottom: 1px solid black;
   opacity: 0.4;
+}
+
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-user-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.section-user-detail .section-edit-btn,
+.section-delete-btn {
+  width: 8rem;
+  height: 2rem;
+  background-color: transparent;
+  margin-top: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.section-user-detail .section-edit-btn {
+  margin-left: 1.5rem;
+  color: grey;
+  font-size: smaller;
+  border: 1px solid grey;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.section-user-detail .section-delete-btn {
+  color: #b85c5c;
+  font-size: smaller;
+  border: 1px solid #b85c5c;
+  opacity: 0.8;
+  margin-left: 0.3rem;
+  cursor: pointer;
+}
+
+.section-user-detail .section-delete-btn:hover {
+  color: #fff;
+  background-color: #b85c5c;
+  border-color: #b85c5c;
+  border-color: #b85c5c;
+  transition: 0.1s all;
+  opacity: 1;
+}
+
+.section-user-detail .section-edit-btn:hover {
+  color: #fff;
+  background-color: rgb(192, 189, 189);
+  border-color: #ccc;
+  transition: 0.1s all;
+  opacity: 1;
+}
+
+.section-user-image figcaption .section-date {
+  opacity: 0.5;
+  font-size: small;
+  font-weight: 500;
+}
+
+form {
+  margin-left: 40rem;
+  margin-top: 3rem;
+}
+
+form .comment-wrapper {
+  border: 1px solid grey;
+  width: 50rem;
+}
+
+form .comment-wrapper textarea {
+  width: 100%;
+  border: none;
+}
+
+.btn-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background-color: #f5f5f5;
+  border-top: 0.5px solid gray;
+}
+
+form .btn-section .comment-btn {
+  padding: 0.3rem;
+  font-weight: bold;
+  color: white;
+  background-color: #60a860;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form .btn-section .comment-btn:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #419641;
+}
+
+.section-edit-btn .section-edit-icon-text-wrapper span {
+  margin-left: 0.4rem;
+}
+
+.section-delete-btn .section-delete-icon-text-wrapper span {
+  margin-left: 0.3rem;
 }

@@ -1,8 +1,8 @@
 .banner {
   color: #fff;
   background: #333;
-  padding: 2rem 0rem 2rem 30rem;
-  font-family: 'Source Sans Pro', sans-serif;
+  padding: 2rem 0rem 2rem 14rem;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   box-sizing: border-box;
@@ -23,7 +23,7 @@ figcaption {
   margin-left: 0.5rem;
 }
 
-h2 {
+h1 {
   margin-bottom: 2rem;
 }
 
@@ -31,10 +31,14 @@ h2 {
   display: flex;
   gap: 1rem;
 }
+h2,
+.user-detail {
+  margin-left: 0rem;
+}
 
 .user-detail .edit-btn,
 .delete-btn {
-  width: 7rem;
+  width: 8rem;
   height: 2rem;
   background-color: transparent;
   margin-top: 0.9rem;
@@ -46,4 +50,37 @@ h2 {
   color: white;
   font-size: smaller;
   border: 1px solid white;
+  opacity: 0.6;
+}
+.user-detail .delete-btn {
+  color: red;
+  font-size: smaller;
+  border: 1px solid red;
+  opacity: 0.6;
+}
+
+.user-detail .edit-btn .edit-icon-text-wrapper span {
+  margin-left: 0.4rem;
+}
+
+.user-detail .delete-btn .delete-icon-text-wrapper span {
+  margin-left: 0.3rem;
+}
+
+.article-body{
+  padding: 2rem 30rem 0rem 30rem;
+  font-family: "Source Serif Pro", serif;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  
+}
+
+.article-body p{
+  width: fit-content;
+  padding-bottom: 4.5rem;
+}
+
+.article-body div{
+  border-bottom: 1px solid black;
+  opacity: 0.4;
 }

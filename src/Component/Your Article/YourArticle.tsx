@@ -11,8 +11,6 @@ const YourArticle: FC = (): ReactElement => {
   const [yourFeed, setYourFeed] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
-
   //fetching your feed data
   useEffect(() => {
     setLoading(true);
@@ -24,12 +22,10 @@ const YourArticle: FC = (): ReactElement => {
         },
       })
       .then((response) => {
-        console.log("🚀 ~ file: YourArticle.tsx:23 ~ .then ~ response", response.data.articles)
         setYourFeed(response.data.articles);
         setLoading(false);
       });
   }, []);
-  console.log(yourFeed);
 
   return (
     <section className={stylesYourFeed.container}>
@@ -70,9 +66,7 @@ const YourArticle: FC = (): ReactElement => {
                     <Link to={`/article/${feed.slug}`}>Read more....</Link>
                     <ul>
                       {feed.tagList.map((tag: string, index: number) => {
-                        return (
-                          <li key={index}>{tag}</li>
-                        )
+                        return <li key={index}>{tag}</li>;
                       })}
                     </ul>
                   </div>

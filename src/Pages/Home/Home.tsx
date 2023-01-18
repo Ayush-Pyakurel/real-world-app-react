@@ -17,27 +17,29 @@ import { NavLink } from "react-router-dom";
 import YourArticle from "../../Component/Your Article/YourArticle";
 import GlobalArticle from "../../Component/Global Article/GlobalArticle";
 
-interface navLinks {
-  activeClassName: string;
-}
+
 
 const Home: React.FC = (): ReactElement => {
   const [component, setComponent] = useState<any>();
+  const [active, setActive] = useState(false)
 
   //@ts-ignore
-  const { isLoggedIn, user } = useAuthContext();
+  const { isLoggedIn } = useAuthContext();
 
   useEffect(() => {
-    function handleChange(id: any) {
-      setComponent(id);
-    }
-
-    handleChange("your-feed");
+    setActive(true);
+    // handleArticleChange("your-feed");
+    showFeedOnLogout('global-feed')
   }, []);
 
   const handleArticleChange = (component: any) => {
     setComponent(component);
+    setActive(false);
   };
+
+  const showFeedOnLogout = (id:any) => {
+     setComponent(id);
+  }
 
   return (
     <>
@@ -50,8 +52,13 @@ const Home: React.FC = (): ReactElement => {
             }
           >
             <div className={stylesHome.line}>
-              <div className={stylesHome["sub-menu"]}>
-                <button className={stylesHome.btn}>Global Feed</button>
+              <div className={stylesHome["home-sub-menu"]}>
+                <button
+                  className={active ? stylesHome["alt-btn"] : stylesHome.btn}
+                  onClick={() => showFeedOnLogout("global-feed")}
+                >
+                  Global Feed
+                </button>
               </div>
             </div>
             <div className={stylesHome.articles}>
@@ -64,9 +71,9 @@ const Home: React.FC = (): ReactElement => {
         <>
           <div className={stylesHome.container}>
             <div className={stylesHome.line}>
-              <div className={stylesHome["sub-menu"]}>
+              <div className={stylesHome["home-sub-menu"]}>
                 <button
-                  className={stylesHome.btn}
+                  className={active ? stylesHome["alt-btn"] : stylesHome.btn}
                   onClick={() => handleArticleChange("your-feed")}
                 >
                   Your Feed
@@ -80,10 +87,15 @@ const Home: React.FC = (): ReactElement => {
               </div>
             </div>
             <div className={stylesHome.articles}>
-              {component === "your-feed" ? <YourArticle /> : <GlobalArticle />}
+              {component === "global-feed" ? (
+                <GlobalArticle />
+              ) : (
+                <YourArticle />
+              )}
               {/* <span>No article are here... yet</span> */}
             </div>
           </div>
+          {active && console.log("active", active)}
           <Tags />
         </>
       )}

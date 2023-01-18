@@ -98,15 +98,17 @@ h2,
 }
 
 .article-body ul {
-  border: 1px solid grey;
   width: max-content;
-  border-radius: 4rem;
-  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   margin-bottom: 2rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .article-body ul li {
   text-decoration: none;
+  border: 1px solid grey;
+   border-radius: 4rem;
+   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   list-style: none;
   font-size: large;
   opacity: 0.3;

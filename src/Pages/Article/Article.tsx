@@ -57,7 +57,7 @@ const Article: FC = (): ReactElement => {
         title: articles?.article.title,
         description: articles?.article?.description,
         body: articles?.article?.body,
-        tags: [articles?.article?.tagList]
+        tags: [articles?.article?.tagList],
       },
     });
   };
@@ -101,13 +101,11 @@ const Article: FC = (): ReactElement => {
       {/* article body */}
       <article className={stylesArticle["article-body"]}>
         <p>{articles?.article?.body}</p>
-        {articles?.article?.tagList.map((tag: any, index: number) => {
-          return (
-            <ul key={index}>
-              <li>{tag}</li>
-            </ul>
-          );
-        })}
+        <ul>
+          {articles?.article?.tagList.map((tag: string, index: number) => {
+            return <li key={index}>{tag}</li>;
+          })}
+        </ul>
         <div />
       </article>
 

@@ -8,8 +8,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 const FavoritedArticles: FC = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [favoritedArticles, setFavoritedArticles] = useState([]);
-   const { username } = useParams();
-
+  const { username } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -65,7 +64,7 @@ const FavoritedArticles: FC = (): ReactElement => {
                   <span className={stylesFavoritedArticles.description}>
                     {favoritedArticle.description}
                   </span>
-                  <Link to={`article/${favoritedArticle.slug}`}>
+                  <Link to={`/article/${favoritedArticle.slug}`}>
                     Read More...
                   </Link>
                 </div>

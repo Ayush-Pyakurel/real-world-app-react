@@ -47,7 +47,7 @@ const GlobalArticle = () => {
   }, []);
 
   return (
-    <div>
+    <section>
       {loading ? (
         <h5 className={stylesGlobalFeed.loading}>Loading articles...</h5>
       ) : (
@@ -81,7 +81,7 @@ const GlobalArticle = () => {
           })}
         </article>
       )}
-    </div>
+    </section>
   );
 };
 

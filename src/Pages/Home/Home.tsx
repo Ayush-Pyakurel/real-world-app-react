@@ -32,7 +32,7 @@ const Home: React.FC = (): ReactElement => {
       setComponent(id);
     }
 
-    handleChange("global-feed");
+    handleChange("your-feed");
   }, []);
 
   const handleArticleChange = (component: any) => {

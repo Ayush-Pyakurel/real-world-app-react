@@ -60,3 +60,11 @@
 .menu-btn:focus {
   color: green;
 }
+
+.menu-button {
+  color: green;
+  background-color: transparent;
+  border: none;
+  margin: 0rem 1rem 0.5rem 0.2rem;
+  /* color: #999; */
+}

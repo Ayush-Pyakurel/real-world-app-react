@@ -3,6 +3,9 @@ import { useEffect, useState, FC, ReactElement } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MyArticles from "../../Component/My Articles/MyArticles";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+
 import styleProfile from "./Profile.module.css";
 import FavoritedArticles from "../../Component/Favorited Articles/FavoritedArticles";
 
@@ -25,11 +28,13 @@ const Profile: FC = (): ReactElement => {
 
   const [component, setComponent] = useState();
   const [profile, setProfile] = useState<IProfile>(initialProfileState);
+  const [active, setActive] = useState(false);
 
   const email = JSON.parse(localStorage.getItem("user") || "{}");
  
 
   useEffect(() => {
+    setActive(true)
     axios
       .get<IProfile>(`https://api.realworld.io/api/profiles/${username}`)
       .then((response) => {
@@ -50,6 +55,7 @@ const Profile: FC = (): ReactElement => {
 
   const handleClick = (component: any) => {
     setComponent(component);
+    setActive(false)
   };
 
   return (
@@ -63,7 +69,7 @@ const Profile: FC = (): ReactElement => {
             className={styleProfile.btn}
             onClick={handleRedirectionToSettings}
           >
-            Edit Profile Settings
+            <FontAwesomeIcon icon={faGear}/>Edit Profile Settings
           </button>
         </div>
       </section>
@@ -71,7 +77,9 @@ const Profile: FC = (): ReactElement => {
         <div className={styleProfile.line}>
           <div className={styleProfile["sub-menu"]}>
             <button
-              className={styleProfile["menu-btn"]}
+              className={
+                active ? styleProfile["menu-button"] : styleProfile["menu-btn"]
+              }
               onClick={() => handleClick("my-article")}
             >
               My Articles

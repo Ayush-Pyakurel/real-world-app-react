@@ -4,42 +4,36 @@ import { ReactElement, useEffect, useState } from "react";
 //component imports
 import Banner from "../../Component/Banner/Banner";
 import Tags from "../../Component/Tags/Tags";
-import Article from "../Article/Article";
 
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
 import stylesHome from "./Home.module.css";
-import { NavLink } from "react-router-dom";
-
-//react router import
-// import { NavLink, Outlet } from "react-router-dom";
 
 import YourArticle from "../../Component/Your Article/YourArticle";
 import GlobalArticle from "../../Component/Global Article/GlobalArticle";
 
-
-
 const Home: React.FC = (): ReactElement => {
-  const [component, setComponent] = useState<any>();
-  const [active, setActive] = useState(false)
+  const [component, setComponent] = useState<any>("your-feed");
+  const [active, setActive] = useState(true);
 
   //@ts-ignore
   const { isLoggedIn } = useAuthContext();
 
   useEffect(() => {
-    setActive(true);
-    // handleArticleChange("your-feed");
-    showFeedOnLogout('global-feed')
+    if (!isLoggedIn) {
+      showFeedOnLogout("global-feed");
+    } else {
+      handleArticleChange("your-feed");
+    }
   }, []);
 
-  const handleArticleChange = (component: any) => {
-    setComponent(component);
-    setActive(false);
+  const handleArticleChange = (components: any) => {
+    setComponent(components);
   };
 
-  const showFeedOnLogout = (id:any) => {
-     setComponent(id);
-  }
+  const showFeedOnLogout = (id: any) => {
+    setComponent(id);
+  };
 
   return (
     <>
@@ -73,7 +67,11 @@ const Home: React.FC = (): ReactElement => {
             <div className={stylesHome.line}>
               <div className={stylesHome["home-sub-menu"]}>
                 <button
-                  className={active ? stylesHome["alt-btn"] : stylesHome.btn}
+                  className={
+                    component === "your-feed"
+                      ? stylesHome["alt-btn"]
+                      : stylesHome.btn
+                  }
                   onClick={() => handleArticleChange("your-feed")}
                 >
                   Your Feed
@@ -92,10 +90,8 @@ const Home: React.FC = (): ReactElement => {
               ) : (
                 <YourArticle />
               )}
-              {/* <span>No article are here... yet</span> */}
             </div>
           </div>
-          {active && console.log("active", active)}
           <Tags />
         </>
       )}

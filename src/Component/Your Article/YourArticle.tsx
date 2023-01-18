@@ -13,18 +13,22 @@ const YourArticle: FC = (): ReactElement => {
 
   //fetching your feed data
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`https://api.realworld.io/api/articles/feed?limit=20&offset=0`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      })
-      .then((response) => {
-        setYourFeed(response.data.articles);
-        setLoading(false);
-      });
+    const handleFetchYourFeed = async () => {
+      setLoading(true);
+      await axios
+        .get(`https://api.realworld.io/api/articles/feed?limit=20&offset=0`, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          },
+        })
+        .then((response) => {
+          setYourFeed(response.data.articles);
+          setLoading(false);
+        });
+    };
+
+    handleFetchYourFeed();
   }, []);
 
   return (

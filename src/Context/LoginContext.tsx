@@ -45,7 +45,7 @@ export const loginReducer = (state: any, action: any) => {
 export const LoginContexProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(loginReducer, {
     user: null,
-    isLoggedIn: false,
+    isLoggedIn: localStorage.getItem("user") ? true : false,
   });
 
   //on every render STORED action is dispatched

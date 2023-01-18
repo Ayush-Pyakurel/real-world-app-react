@@ -36,20 +36,20 @@ const GlobalArticle = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleFetchArticle = async () => {
+    const handleFetchGlobalArticle = async () => {
       setLoading(true);
       await axios
         .get<ArticleResponse>("https://api.realworld.io/api/articles")
         .then((response: any) => {
           setArticles(response.data.articles);
-          console.log(response.data.articles);
+          // console.log(response.data.articles);
           setLoading(false);
         });
     };
-    handleFetchArticle();
+    handleFetchGlobalArticle();
   }, []);
 
-  console.log(articles)
+  //console.log(articles)
 
   return (
     <section className={stylesGlobalFeed.container}>

@@ -34,6 +34,7 @@ const Settings: FC = (): ReactElement => {
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(!!location);
 
   //function to handle the update of the setting
   const updateCurrentUser = async (values: any) => {
